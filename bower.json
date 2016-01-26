@@ -4,22 +4,18 @@
   "authors": [
     "Tetsuya Mori <t2y3141592@gmail.com>"
   ],
-  "description": "ThinText formatter with Unicode CLDR Plural Rules and choices support",
-  "main": "i18n-format.html",
+  "description": "Thin Polymer syntax for ES6",
+  "main": "thin-polymer.html",
   "keywords": [
     "polymer",
     "web-component",
     "web-components",
-    "i18n",
-    "internationalization",
-    "l10n",
-    "localization",
-    "format",
-    "pluralization",
-    "cldr"
+    "ES6",
+    "ES2015",
+    "ES7"
   ],
   "license": "BSD-2-Clause",
-  "homepage": "https://t2ym.github.io/i18n-format/",
+  "homepage": "https://t2ym.github.io/thin-polymer/",
   "ignore": [
     "**/.*",
     "node_modules",
