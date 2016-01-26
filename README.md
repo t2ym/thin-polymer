@@ -1,10 +1,6 @@
 # thin-polymer
 
-Thin Polymer syntax for ES6
-
-[Demo](https://t2ym.github.io/thin-polymer/components/thin-polymer/demo) and [API Docs](https://t2ym.github.io/thin-polymer/components/thin-polymer/)
-
-<img src="https://raw.githubusercontent.com/wiki/t2ym/thin-polymer/thin-polymer.gif" width="600px">
+Thin Polymer syntax for ES6 (experimental)
 
 ## Install
 
@@ -48,16 +44,10 @@ Omitted: `<dom-module>` and `Polymer()`
 
 JavaScript only. Template as a property in a ES6 template string. 
 
-```html
+```javascript
     Prototype = {
       is: 'es5-element2',
       template: `
-        <style>
-        .label {
-          color: white;
-          background-color: blue;
-        }
-        </style>
         <span class="label">{{label}}</span>
       `,
       properties: {
@@ -103,7 +93,7 @@ ES6 class with beforeRegister() callback.
 JavaScript only. ES6 class with initialization at constructor.
 Automatic un-camel-casing from class name.
 
-```html
+```javascript
     // es6-element2.js
     'use strict';
 
@@ -129,16 +119,10 @@ Automatic un-camel-casing from class name.
 
 JavaScript only. ES7 class properties for initialization.
 
-```html
+```javascript
     // Es7Element2.js - Babel tranpilation required
     Prototype = class Es7Element2 {
       template = `
-        <style>
-        .label {
-          background-color: blue;
-          color: white;
-        }
-        </style>
         <span class="label">{{label}}</span>
       `;
       properties = {
@@ -177,6 +161,10 @@ JavaScript only. ES7 class properties for initialization.
     </dom-module>
 ```
 
-### License
+## Compatibility
+
+TODO
+
+## License
 
 [BSD-2-Clause](https://github.com/t2ym/thin-polymer/blob/master/LICENSE.md)
