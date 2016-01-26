@@ -163,7 +163,16 @@ JavaScript only. ES7 class properties for initialization.
 
 ## Compatibility
 
-TODO
+- Release 0.0.2 Compatibility Table
+
+| Browser          | Pure ES5   | Partial ES6 | ES6 class | ES6 constructor | ES7 property |
+|:-----------------|:-----------|:------------|:----------|:----------------|:-------------|
+| Chrome 48        | Run        | Run         | Run       | Run             | Run          |
+| Microsoft Edge   | Run        | Run         | Not Run   | Not Run         | Not Run      |
+| IE 11            | Not Run    | Not Run     | Not Run   | Not Run         | Not Run      |
+| Firefox 43       | Run        | Run         | Not Run   | Not Run         | Not Run      |
+| Safari           | N/A        | N/A         | N/A       | N/A             | N/A          |   
+| Mobile Chrome 48 | Run        | Run         | Run       | Run             | Run          |
 
 ## License
 
