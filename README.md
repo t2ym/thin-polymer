@@ -1,39 +1,182 @@
-## thin-polymer
+# thin-polymer
 
-Thinner Polymer syntax for ES6
+Thin Polymer syntax for ES6
 
 [Demo](https://t2ym.github.io/thin-polymer/components/thin-polymer/demo) and [API Docs](https://t2ym.github.io/thin-polymer/components/thin-polymer/)
 
 <img src="https://raw.githubusercontent.com/wiki/t2ym/thin-polymer/thin-polymer.gif" width="600px">
 
-### Install
+## Install
 
 ```
     bower install --save thin-polymer
 ```
 
-### Import
+## Import
 
 ```html
     <link rel="import" href="/path/to/bower_components/thin-polymer/thin-polymer.html">
 ```
 
-### Usage
+## Thinner Syntax
+
+### Pure ES5
+
+Omitted: `<dom-module>` and `Polymer()`
 
 ```html
-    <p>
-      <thin-polymer>
-        <span>{1} element is effective for UI localization with {2}.</span>
-        <code>thin-polymer</code>
-        <a href="https://www.google.com/">parameters</a>
-      </thin-polymer>
-    </p>
+    <template id="es5-element1">
+      <span>{{label}}</span>
+    </template>
+    <﻿﻿script﻿﻿>
+    Prototype = {
+      is: 'es5-element1',
+      properties: {
+        label: {
+          type: String,
+          value: 'label'
+        }
+      },
+      attached: function () {
+        this.label = this.label.toUpperCase();
+      }
+    }
+    <﻿﻿/script﻿﻿>
 ```
 
-This renders as follows:
+### Partial ES6
+
+JavaScript only. Template as a property in a ES6 template string. 
 
 ```html
-    <p><code>thin-polymer</code> element is effective for UI localization with <a href="https://www.google.com/">parameters</a>.</p>
+    Prototype = {
+      is: 'es5-element2',
+      template: `
+        <style>
+        .label {
+          color: white;
+          background-color: blue;
+        }
+        </style>
+        <span class="label">{{label}}</span>
+      `,
+      properties: {
+        label: {
+          type: String,
+          value: 'label'
+        }
+      },
+      attached () {
+        this.label = this.label.toUpperCase();
+      }
+    }
+```
+
+### ES6 class with beforeRegister
+
+ES6 class with beforeRegister() callback.
+
+```html
+    'use strict';
+
+    <template id="es6-element1">
+      <span>{{label}}</span>
+    </template>
+    <﻿﻿script﻿﻿>
+    Prototype = class Es6Element1 {
+      beforeRegister () {
+        this.is = 'es6-element1';
+        this.properties = {
+          label: {
+            type: String,
+            value: 'label'
+          }
+        };
+      }
+      attached () {
+        this.label = this.label.toUpperCase();
+      }
+    }
+    <﻿﻿/script﻿﻿>
+```
+
+### ES6 class with constructor
+
+JavaScript only. ES6 class with initialization at constructor.
+Automatic un-camel-casing from class name.
+
+```html
+    // es6-element2.js
+    'use strict';
+
+    Prototype = class Es6Element2 {
+      constructor () {
+        this.template = `
+          <span>{{label}}</span>
+        `;
+        this.properties = {
+          label: {
+            type: String,
+            value: 'label'
+          }
+        };
+      }
+      attached () {
+        this.label = this.label.toUpperCase();
+      }
+    }
+```
+
+### ES7 class property
+
+JavaScript only. ES7 class properties for initialization.
+
+```html
+    // Es7Element2.js - Babel tranpilation required
+    Prototype = class Es7Element2 {
+      template = `
+        <style>
+        .label {
+          background-color: blue;
+          color: white;
+        }
+        </style>
+        <span class="label">{{label}}</span>
+      `;
+      properties = {
+        label: {
+          type: String,
+          value: 'label'
+        }
+      };
+      attached () {
+        this.label = this.label.toUpperCase();
+      }
+    }
+```
+
+### Equivalent ES5 Polymer syntax
+
+```html
+    <dom-module id="es5-element">
+        <template>
+          <span>{{label}}</span>
+        </template>
+        <﻿﻿script﻿﻿>
+        Polymer({
+          is: 'es5-element1',
+          properties: {
+            label: {
+              type: String,
+              value: 'label'
+            }
+          },
+          attached: function () {
+            this.label = this.label.toUpperCase();
+          }
+        });
+        <﻿﻿/script﻿﻿>
+    </dom-module>
 ```
 
 ### License
