@@ -141,23 +141,23 @@ JavaScript only. ES7 class properties for initialization.
 
 ```html
     <dom-module id="es5-element">
-        <template>
-          <span>{{label}}</span>
-        </template>
-        <script>
-        Polymer({
-          is: 'es5-element1',
-          properties: {
-            label: {
-              type: String,
-              value: 'label'
-            }
-          },
-          attached: function () {
-            this.label = this.label.toUpperCase();
+      <template>
+        <span>{{label}}</span>
+      </template>
+      <script>
+      Polymer({
+        is: 'es5-element',
+        properties: {
+          label: {
+            type: String,
+            value: 'label'
           }
-        });
-        </script>
+        },
+        attached: function () {
+          this.label = this.label.toUpperCase();
+        }
+      });
+      </script>
     </dom-module>
 ```
 
