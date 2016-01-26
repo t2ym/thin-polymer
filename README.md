@@ -28,7 +28,7 @@ Omitted: `<dom-module>` and `Polymer()`
     <template id="es5-element1">
       <span>{{label}}</span>
     </template>
-    <﻿﻿script﻿﻿>
+    <script>
     Prototype = {
       is: 'es5-element1',
       properties: {
@@ -41,7 +41,7 @@ Omitted: `<dom-module>` and `Polymer()`
         this.label = this.label.toUpperCase();
       }
     }
-    <﻿﻿/script﻿﻿>
+    </script>
 ```
 
 ### Partial ES6
@@ -77,12 +77,10 @@ JavaScript only. Template as a property in a ES6 template string.
 ES6 class with beforeRegister() callback.
 
 ```html
-    'use strict';
-
     <template id="es6-element1">
       <span>{{label}}</span>
     </template>
-    <﻿﻿script﻿﻿>
+    <script>
     Prototype = class Es6Element1 {
       beforeRegister () {
         this.is = 'es6-element1';
@@ -97,7 +95,7 @@ ES6 class with beforeRegister() callback.
         this.label = this.label.toUpperCase();
       }
     }
-    <﻿﻿/script﻿﻿>
+    </script>
 ```
 
 ### ES6 class with constructor
@@ -162,7 +160,7 @@ JavaScript only. ES7 class properties for initialization.
         <template>
           <span>{{label}}</span>
         </template>
-        <﻿﻿script﻿﻿>
+        <script>
         Polymer({
           is: 'es5-element1',
           properties: {
@@ -175,7 +173,7 @@ JavaScript only. ES7 class properties for initialization.
             this.label = this.label.toUpperCase();
           }
         });
-        <﻿﻿/script﻿﻿>
+        </script>
     </dom-module>
 ```
 
