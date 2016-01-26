@@ -48,7 +48,7 @@ JavaScript only. Template as a property in a ES6 template string.
     Prototype = {
       is: 'es5-element2',
       template: `
-        <span class="label">{{label}}</span>
+        <span>{{label}}</span>
       `,
       properties: {
         label: {
@@ -123,7 +123,7 @@ JavaScript only. ES7 class properties for initialization.
     // Es7Element2.js - Babel tranpilation required
     Prototype = class Es7Element2 {
       template = `
-        <span class="label">{{label}}</span>
+        <span>{{label}}</span>
       `;
       properties = {
         label: {
