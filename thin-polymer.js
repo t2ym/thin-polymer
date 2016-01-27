@@ -14,6 +14,11 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
       // lowercase
       .toLowerCase();
   }
+  function functionName (func) {
+    return typeof func === 'function' ? 
+            func.toString().replace(/^[\S\s]*?function\s*/, "").replace(/[\s\(\/][\S\s]+$/, "") :
+            undefined;
+  }
   if (!window.Prototype) {
     Object.defineProperty(window, 'Prototype', {
       get: function () {
@@ -34,6 +39,7 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
         */
         var id;
         var classId;
+        var name = proto.name || functionName(proto);
         var current; // currentScript
         var template = null;
         var previous; // previousSibling template
@@ -73,7 +79,7 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
           }
         }
 
-        if (!proto.is && !proto.name) {
+        if (!proto.is && !name) {
           if (previous) {
             id = previous.id;
             if (id) {
@@ -87,17 +93,18 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
           if (proto.is) {
             id = proto.is;
           }
-          else if (typeof proto === 'function' && proto.name) {
+          else if (typeof proto === 'function' && name) {
             // ES6 class
-            id = UncamelCase(proto.name);
-            classId = proto.name;
+            id = UncamelCase(name);
+            classId = name;
             proto = new proto();
             if (proto.template) {
               // Pattern f)
               template = document.createElement('template');
               template.innerHTML = proto.template;
-              var topChild = template.content.children.length === 1 ? 
-                              template.content.children[0] : undefined;
+              var children = Array.prototype.filter.call(template.content.childNodes, 
+                              function (node) { return node.tagName; });
+              var topChild = children.length === 1 ? children[0] : undefined;
               if (topChild && topChild.tagName.toLowerCase() === 'template') {
                 template = topChild;
               }
@@ -133,7 +140,7 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
         // register dom-module
         if (template) {
           var domModule = document.createElement('dom-module');
-          var assetUrl = new URL(current.baseURI);
+          var assetUrl = new URL(current.baseURI || window.currentImport.baseURI);
           domModule.appendChild(template);
           domModule.setAttribute('assetpath', 
                                   assetUrl.pathname.indexOf('.vulcanized.') < 0 ?
