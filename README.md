@@ -2,6 +2,8 @@
 
 Thin Polymer syntax for ES6 (experimental)
 
+[Demo](https://t2ym.github.io/thin-polymer/components/thin-polymer/demo/) on GitHub Pages
+
 ## Install
 
 ```

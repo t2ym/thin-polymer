@@ -1,6 +1,6 @@
 {
   "name": "thin-polymer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Thin Polymer syntax for ES6",
   "main": "thin-polymer.js",
   "dependencies": {},
