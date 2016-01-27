@@ -18,7 +18,7 @@ Thin Polymer syntax for ES6 (experimental)
 
 ### Pure ES5
 
-Omitted: `<dom-module>` and `Polymer()`
+Omit `<dom-module>` and `Polymer()`
 
 ```html
     <template id="es5-element1">
@@ -42,9 +42,10 @@ Omitted: `<dom-module>` and `Polymer()`
 
 ### Partial ES6
 
-JavaScript only. Template as a property in a ES6 template string. 
+ES6 template string for `template` property and ES6 shorthand method.
 
-```javascript
+```html
+    <script>
     Prototype = {
       is: 'es5-element2',
       template: `
@@ -60,6 +61,7 @@ JavaScript only. Template as a property in a ES6 template string.
         this.label = this.label.toUpperCase();
       }
     }
+    </script>
 ```
 
 ### ES6 class with beforeRegister
@@ -90,11 +92,11 @@ ES6 class with beforeRegister() callback.
 
 ### ES6 class with constructor
 
-JavaScript only. ES6 class with initialization at constructor.
+ES6 class with initialization at constructor.
 Automatic un-camel-casing from class name.
 
-```javascript
-    // es6-element2.js
+```html
+    <script>
     'use strict';
 
     Prototype = class Es6Element2 {
@@ -113,14 +115,16 @@ Automatic un-camel-casing from class name.
         this.label = this.label.toUpperCase();
       }
     }
+    </script>
 ```
 
 ### ES7 class property
 
-JavaScript only. ES7 class properties for initialization.
+ES7 class properties for initialization.
 
-```javascript
-    // Es7Element2.js - Babel tranpilation required
+```html
+    <script>
+    // Babel tranpilation required
     Prototype = class Es7Element2 {
       template = `
         <span>{{label}}</span>
@@ -135,6 +139,7 @@ JavaScript only. ES7 class properties for initialization.
         this.label = this.label.toUpperCase();
       }
     }
+    </script>
 ```
 
 ### Equivalent ES5 Polymer syntax
@@ -163,16 +168,43 @@ JavaScript only. ES7 class properties for initialization.
 
 ## Compatibility
 
-- Release 0.0.2 Compatibility Table
+- Release 0.0.3 Compatibility Table
+
+Babel Transpilation:
 
 | Browser          | Pure ES5   | Partial ES6 | ES6 class | ES6 constructor | ES7 property |
 |:-----------------|:-----------|:------------|:----------|:----------------|:-------------|
 | Chrome 48        | Run        | Run         | Run       | Run             | Run          |
-| Microsoft Edge   | Run        | Run         | Not Run   | Not Run         | Not Run      |
-| IE 11            | Not Run    | Not Run     | Not Run   | Not Run         | Not Run      |
-| Firefox 43       | Run        | Run         | Not Run   | Not Run         | Not Run      |
+| Microsoft Edge   | Run        | Run         | Run       | Run             | Run          |
+| IE 11            | Run        | Run         | Run       | Run             | Run          |
+| Firefox 43       | Run        | Run         | Run       | Run             | Run          |
 | Safari           | N/A        | N/A         | N/A       | N/A             | N/A          |   
 | Mobile Chrome 48 | Run        | Run         | Run       | Run             | Run          |
+
+Native:
+
+| Browser          | Pure ES5   | Partial ES6 | ES6 class | ES6 constructor | ES7 property |
+|:-----------------|:-----------|:------------|:----------|:----------------|:-------------|
+| Chrome 48        | Run        | Run         | Run       | Run             | Not Run      |
+| Microsoft Edge   | Run        | Run         | Not Run   | Not Run         | Not Run      |
+| IE 11            | Run        | Not Run     | Not Run   | Not Run         | Not Run      |
+| Firefox 43       | Run        | Run         | Not Run   | Not Run         | Not Run      |
+| Safari           | N/A        | N/A         | N/A       | N/A             | N/A          |   
+| Mobile Chrome 48 | Run        | Run         | Run       | Run             | Not Run      |
+
+- Importing
+
+Browsers with HTML Import polyfill, that is, non-Chrome browsers, have to wrap 
+`<script src=""></script>` by HTML import so that thin-polymer is loaded before
+the scripts.
+
+## Demo Transpilation by Babel
+
+```
+    npm install && bower install
+    # Source demo/native/; Dest demo/babel/
+    gulp demo
+```
 
 ## License
 

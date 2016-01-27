@@ -1,5 +1,5 @@
 <!--
-@license https://github.com/t2ym/i18n-format/blob/master/LICENSE.md
+@license https://github.com/t2ym/thin-polymer/blob/master/LICENSE.md
 Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
 -->
 <html>
@@ -8,17 +8,13 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
     <title>thin-polymer Demo</title>
     <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
     <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
     <link rel="import" href="../../paper-styles/demo-pages.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
     <link rel="import" href="../thin-polymer.html">
-    <link rel="import" href="es5-element1.html">
-    <link rel="import" href="es5-element2.html">
-    <link rel="import" href="es6-element1.html">
-    <script src="es6-element2.js"></script>
-    <script src="es7-element1.js"></script>
-    <script src="es7-element2.js"></script>
     <style is="custom-style" include="demo-pages-shared-styles">
       .vertical-section-container {
         max-width: 768px;
@@ -60,6 +56,11 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
       code {
         font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
         color: black;
+      }
+
+      a {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
       }
 
       .input {
@@ -134,229 +135,34 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
     </style>
   </head>
   <body unresolved>
-    <div class="vertical-section-container centered">
+    <template is="dom-bind" id="demo">
 
-      <h1><code>&lt;thin-polymer&gt;</code> Demo</h1>
+      <h1><code>thin-polymer</code> Demo</h1>
 
-      <div class="vertical-section-container">
-        <h2>Omit dom-module</h2>
-        <demo-snippet class="centered-demo">
-          <template>
-            <es5-element1 label="label is capitalized"></es5-element1>
-          </template>
-          <script type="text/markdown">
-            <template id="es5-element1">
-              <span>{{label}}</span>
-            </template>
-            <﻿﻿script﻿﻿>
-            Prototype = {
-              is: 'es5-element1',
-              properties: {
-                label: {
-                  type: String,
-                  value: 'label'
-                }
-              },
-              attached: function () {
-                this.label = this.label.toUpperCase();
-              }
-            }
-            <﻿﻿/script﻿﻿>
+      <a href="babel/index.html">Demos with Babel transpilation in {{sec}} seconds</a><br>
+      <a href="native/index.html">Native Demos (Browsers cannot handle some of them)</a>
 
-            <es5-element1 label="label is capitalized"></es5-element1>
-          </script>
-        </demo-snippet>
-
-        <h2>Omit dom-module; Use template property; Use ES6 methods; Use ES6 template string</h2>
-        <demo-snippet class="centered-demo">
-          <template>
-            <es5-element2 label="label is capitalized"></es5-element2>
-          </template>
-          <script type="text/markdown">
-            <﻿﻿script﻿﻿>
-            Prototype = {
-              is: 'es5-element2',
-              template: `
-                <style>
-                .label {
-                  color: white;
-                  background-color: blue;
-                }
-                </style>
-                <span class="label">{{label}}</span>
-              `,
-              properties: {
-                label: {
-                  type: String,
-                  value: 'label'
-                }
-              },
-              attached () {
-                this.label = this.label.toUpperCase();
-              }
-            }
-            <﻿﻿/script﻿﻿>
-
-            <es5-element2 label="label is capitalized"></es5-element2>
-          </script>
-        </demo-snippet>
-
-        <h2>Omit dom-module; Use ES6 class; Use beforeRegister()</h2>
-        <demo-snippet class="centered-demo">
-          <template>
-            <es6-element1 label="label is capitalized"></es6-element1>
-          </template>
-          <script type="text/markdown">
-            'use strict';
-
-            <template id="es6-element1">
-              <span>{{label}}</span>
-            </template>
-            <﻿﻿script﻿﻿>
-            Prototype = class Es6Element1 {
-              beforeRegister () {
-                this.is = 'es6-element1';
-                this.properties = {
-                  label: {
-                    type: String,
-                    value: 'label'
-                  }
-                };
-              }
-              attached () {
-                this.label = this.label.toUpperCase();
-              }
-            }
-            <﻿﻿/script﻿﻿>
-
-            <es6-element1 label="label is capitalized"></es6-element1>
-          </script>
-        </demo-snippet>
-
-        <h2>Use ES6 class; Use constructor; Use template property</h2>
-        <demo-snippet class="centered-demo">
-          <template>
-            <es6-element2 label="label is capitalized"></es6-element2>
-          </template>
-          <script type="text/markdown">
-            // es6-element2.js
-            'use strict';
-
-            Prototype = class Es6Element2 {
-              constructor () {
-                this.template = `
-                  <span>{{label}}</span>
-                `;
-                this.properties = {
-                  label: {
-                    type: String,
-                    value: 'label'
-                  }
-                };
-              }
-              attached () {
-                this.label = this.label.toUpperCase();
-              }
-            }
-
-            // Usage
-            <es6-element2 label="label is capitalized"></es6-element2>
-          </script>
-        </demo-snippet>
-
-        <h2>ES7 class properties (proposed draft standard)</h2>
-        <demo-snippet class="centered-demo">
-          <template>
-            <es7-element1 label="label is capitalized"></es7-element1>
-          </template>
-          <script type="text/markdown">
-            // Es7Element1.js - Babel tranpilation required
-            Prototype = class Es7Element1 {
-              template = `
-                <span>{{label}}</span>
-              `;
-              properties = {
-                label: {
-                  type: String,
-                  value: 'label'
-                }
-              };
-              attached () {
-                this.label = this.label.toUpperCase();
-              }
-            }
-
-            <es7-element1 label="label is capitalized"></es7-element1>
-          </script>
-        </demo-snippet>
-
-        <h2>Use ES7 class and properties (proposed draft standard)</h2>
-        <demo-snippet class="centered-demo">
-          <template>
-            <es7-element2 label="label is capitalized in blue background"></es7-element2>
-          </template>
-          <script type="text/markdown">
-            // Es7Element2.js - Babel tranpilation required
-            Prototype = class Es7Element2 {
-              template = `
-                <style>
-                .label {
-                  background-color: blue;
-                  color: white;
-                }
-                </style>
-                <span class="label">{{label}}</span>
-              `;
-              properties = {
-                label: {
-                  type: String,
-                  value: 'label'
-                }
-              };
-              attached () {
-                this.label = this.label.toUpperCase();
-              }
-            }
-
-            <es7-element2 label="label is capitalized in blue background"></es7-element2>
-          </script>
-        </demo-snippet>
-      </div>
-    </div>
-    
+    </template>
     <script>
-      window.addEventListener('WebComponentsReady', function () {
-        var demoSnippets = document.querySelectorAll('demo-snippet');
-        Array.prototype.forEach.call(demoSnippets, function (demo) {
-          var script = Polymer.dom(demo).queryDistributedElements('script[type="text/markdown"]')[0];
-
-          if (!script) {
-            return;
+      demo.listeners = {
+        'dom-change': 'onDomChange'
+      };
+      demo.onDomChange = function () {
+        this.sec = 10;
+        this.triggerTimer();
+      };
+      demo.triggerTimer = function () {
+        setTimeout(function () {
+          console.log(this.sec);
+          this.sec--;
+          if (this.sec > 0) {
+            this.triggerTimer();
           }
-
-          var snippet = script.innerHTML;
-          var match = snippet.match(/\n([ ]*)/);
-          if (match && match[1]) {
-            var lines = snippet.split(/\n/);
-            snippet = 
-              lines.map(function (line) {
-                if (line.indexOf(match[1]) === 0) {
-                  line = line.slice(match[1].length);               
-                }
-                return line;
-              }).join('\n');
+          else {
+            window.location = 'babel/index.html';
           }
-
-          snippet = '```\n' + snippet + '\n```';
-          snippet = snippet.replace(/=""/g, '');
-
-          demo._markdown = snippet;
-        });
-      });
-      var demoSnippet = document.querySelector('demo-snippet#demo-snippet');
-      demoSnippet.addEventListener('markdown-changed', function (e) {
-        demoSnippet._markdown = e.detail.markdown;
-      });
+        }.bind(this), 1000);
+      };
     </script>
   </body>
 </html>
