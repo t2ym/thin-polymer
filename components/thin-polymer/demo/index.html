@@ -1,0 +1,168 @@
+<!--
+@license https://github.com/t2ym/thin-polymer/blob/master/LICENSE.md
+Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
+-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>thin-polymer Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="../../polymer/polymer.html">
+    <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="../../paper-styles/demo-pages.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../paper-button/paper-button.html">
+    <link rel="import" href="../thin-polymer.html">
+    <style is="custom-style" include="demo-pages-shared-styles">
+      .vertical-section-container {
+        max-width: 768px;
+      }
+
+      @media (max-width: 640px) {
+
+        body {
+          font-size: 14px;
+          margin: 0;
+          padding: 4px;
+          background-color: var(--paper-grey-50);
+        }
+
+        .horizontal-section {
+          background-color: white;
+          padding: 8px;
+          margin-right: 4px;
+          min-width: 200px;
+
+          @apply(--shadow-elevation-2dp);
+        }
+
+        .vertical-section {
+          background-color: white;
+          padding: 8px;
+          margin: 0 4px 8px 4px;
+
+          @apply(--shadow-elevation-2dp);
+        }
+
+      }
+    </style>
+    <style is="custom-style">
+      --demo-snippet-code {
+        @apply(--paper-font-code1);
+      }
+
+      code {
+        font-family: 'Roboto Mono', 'Consolas', 'Menlo', monospace;
+        color: black;
+      }
+
+      a {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+      }
+
+      .input {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        border-width: 0px;
+        outline-width: 0px;
+      }
+
+      .select {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        outline-width: 0px;
+        border-width: 0px;
+        background-color: rgba(255,255,255,0.0);
+      }
+
+      option {
+        position: relative;
+        top: -1;
+        color: black;
+        outline-width: 0px;
+        border-width: 0px;
+      }
+
+      .dropdown {
+        --editable-dropdown-menu: {
+          display: inline-block;
+          margin-right: 8px;
+          text-align: left;
+          width: 180px;
+        };
+      }
+
+      .demo-paper-dropdown-menu {
+        font-family: 'Roboto', 'Noto', Helvetica, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        text-align: left;
+        margin: auto;
+        width: 180px;
+      }
+
+      @media (max-width: 640px) {
+
+        body {
+          font-size: 14px;
+          margin: 0;
+          padding: 4px;
+          background-color: var(--paper-grey-50);
+        }
+
+        .horizontal-section {
+          background-color: white;
+          padding: 8px;
+          margin-right: 4px;
+          min-width: 200px;
+
+          @apply(--shadow-elevation-2dp);
+        }
+
+        .vertical-section {
+          background-color: white;
+          padding: 8px;
+          margin: 0 4px 8px 4px;
+
+          @apply(--shadow-elevation-2dp);
+        }
+
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <template is="dom-bind" id="demo">
+
+      <h1><code>thin-polymer</code> Demo</h1>
+
+      <a href="babel/index.html">Demos with Babel transpilation in {{sec}} seconds</a><br>
+      <a href="native/index.html">Native Demos (Browsers cannot handle some of them)</a>
+
+    </template>
+    <script>
+      demo.listeners = {
+        'dom-change': 'onDomChange'
+      };
+      demo.onDomChange = function () {
+        this.sec = 10;
+        this.triggerTimer();
+      };
+      demo.triggerTimer = function () {
+        setTimeout(function () {
+          console.log(this.sec);
+          this.sec--;
+          if (this.sec > 0) {
+            this.triggerTimer();
+          }
+          else {
+            window.location = 'babel/index.html';
+          }
+        }.bind(this), 1000);
+      };
+    </script>
+  </body>
+</html>
