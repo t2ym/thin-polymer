@@ -39,6 +39,7 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
         */
         var id;
         var classId;
+        var obj;
         var name = proto.name || functionName(proto);
         var current; // currentScript
         var template = null;
@@ -79,7 +80,7 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
           }
         }
 
-        if (!proto.is && !name) {
+        if (!proto.is && (!name || name === 'class' || name === 'Prototype')) {
           if (previous) {
             id = previous.id;
             if (id) {
@@ -97,11 +98,11 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
             // ES6 class
             id = UncamelCase(name);
             classId = name;
-            proto = new proto();
-            if (proto.template) {
+            obj = new proto();
+            if (obj.template) {
               // Pattern f)
               template = document.createElement('template');
-              template.innerHTML = proto.template;
+              template.innerHTML = obj.template;
               var children = Array.prototype.filter.call(template.content.childNodes, 
                               function (node) { return node.tagName; });
               var topChild = children.length === 1 ? children[0] : undefined;
@@ -109,8 +110,11 @@ Copyright (c) 2016, Tetsuya Mori <t2y3141592@gmail.com>. All rights reserved.
                 template = topChild;
               }
             }
-            proto = proto.__proto__;
-            proto.is = id;
+            obj.is = id;
+            Object.getOwnPropertyNames(obj.__proto__).forEach(function (prop) {
+              obj[prop] = obj.__proto__[prop];
+            });
+            proto = obj;
           }
           if (!template && proto.template) {
             // Pattern g)
