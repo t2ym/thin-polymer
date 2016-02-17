@@ -170,7 +170,7 @@ ES7 class properties for initialization.
 
 ## Compatibility
 
-- Release 0.0.3 Compatibility Table
+- Release 0.0.5 Compatibility Table
 
 Babel Transpilation:
 
@@ -179,8 +179,8 @@ Babel Transpilation:
 | Chrome 48        | Run        | Run         | Run       | Run             | Run          |
 | Microsoft Edge   | Run        | Run         | Run       | Run             | Run          |
 | IE 11            | Run        | Run         | Run       | Run             | Run          |
-| Firefox 43       | Run        | Run         | Run       | Run             | Run          |
-| Safari           | N/A        | N/A         | N/A       | N/A             | N/A          |   
+| Firefox 44       | Run        | Run         | Run       | Run             | Run          |
+| Safari 9         | Run        | Run         | Run       | Run             | Run          |   
 | Mobile Chrome 48 | Run        | Run         | Run       | Run             | Run          |
 
 Native:
@@ -190,8 +190,8 @@ Native:
 | Chrome 48        | Run        | Run         | Run       | Run             | Not Run      |
 | Microsoft Edge   | Run        | Run         | Not Run   | Not Run         | Not Run      |
 | IE 11            | Run        | Not Run     | Not Run   | Not Run         | Not Run      |
-| Firefox 43       | Run        | Run         | Not Run   | Not Run         | Not Run      |
-| Safari           | N/A        | N/A         | N/A       | N/A             | N/A          |   
+| Firefox 44       | Run        | Run         | Not Run   | Not Run         | Not Run      |
+| Safari 9         | Run        | Run         | Run       | Run             | Not Run      |   
 | Mobile Chrome 48 | Run        | Run         | Run       | Run             | Not Run      |
 
 - Importing
